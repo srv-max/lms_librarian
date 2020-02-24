@@ -1,1 +1,5 @@
+com/ss/lms/librarian/librarian/DAO/BranchDAO.class
 com/ss/lms/librarian/librarian/LibrarianApplication.class
+com/ss/lms/librarian/librarian/controller/LibrarianController.class
+com/ss/lms/librarian/librarian/service/LibrarianService.class
+com/ss/lms/librarian/librarian/entity/Branch.class
