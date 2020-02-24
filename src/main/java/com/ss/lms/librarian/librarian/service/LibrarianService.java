@@ -9,30 +9,28 @@ import org.springframework.stereotype.Component;
 import com.ss.lms.librarian.librarian.DAO.BranchDAO;
 import com.ss.lms.librarian.librarian.entity.Branch;
 
-
 @Component
 public class LibrarianService {
 	@Autowired
 	BranchDAO branchDAO;
-	
-	
+
 	public List<Branch> readAllBranches() throws Exception {
 
 		List<Branch> listOfBranchs = null;
 
 		try {
-			
+
 			listOfBranchs = branchDAO.findAll();
 		} catch (Exception e) {
 
 			throw e;
 		} finally {
-		
+
 		}
 
 		return listOfBranchs;
 	}
-	
+
 	public Optional<Branch> readBranchsById(Integer branchId) throws Exception {
 
 		Optional<Branch> branch = null;
@@ -47,6 +45,20 @@ public class LibrarianService {
 
 		}
 		return branch;
+
+	}
+
+	public Branch updateBranch(Branch branch) {
+		Branch updatedBranch = null;
+		// TODO Auto-generated method stub
+		try {
+			updatedBranch = branchDAO.save(branch);
+			branchDAO.flush();
+		} catch (Exception e) {
+			throw e;
+		}
+		
+		return updatedBranch;
 
 	}
 
