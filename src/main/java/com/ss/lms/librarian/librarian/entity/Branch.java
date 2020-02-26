@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
@@ -16,13 +18,17 @@ import org.springframework.stereotype.Component;
 public class Branch {
 	
 	@Id
+	@NotNull
+	@Column(name="branchId", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long branchId;
 	
-	@Column(name="branchName")
+	@NotBlank
+	@Column(name="branchName", nullable = false)
 	private String branchName;
 	
-	@Column(name="branchAddress")
+	@NotBlank
+	@Column(name="branchAddress", nullable = false)
 	private String branchAddress;
 	
 	public Long getBranchId() {

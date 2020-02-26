@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ss.lms.librarian.librarian.DAO.BranchDAO;
 import com.ss.lms.librarian.librarian.entity.Branch;
@@ -14,52 +15,20 @@ public class LibrarianService {
 	@Autowired
 	BranchDAO branchDAO;
 
-	public List<Branch> readAllBranches() throws Exception {
+	public List<Branch> readAllBranches() {
 
-		List<Branch> listOfBranchs = null;
-
-		try {
-
-			listOfBranchs = branchDAO.findAll();
-		} catch (Exception e) {
-
-			throw e;
-		} finally {
-
-		}
-
-		return listOfBranchs;
+		return branchDAO.findAll();
 	}
 
-	public Optional<Branch> readBranchsById(Integer branchId) throws Exception {
+	public Optional<Branch> readBranchsById(Integer branchId) {
 
-		Optional<Branch> branch = null;
-
-		try {
-
-			branch = branchDAO.findById(Long.valueOf(branchId));
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		} finally {
-
-		}
-		return branch;
-
+		return branchDAO.findById(Long.valueOf(branchId));
 	}
-
+	
+	@Transactional
 	public Branch updateBranch(Branch branch) {
-		Branch updatedBranch = null;
-		// TODO Auto-generated method stub
-		try {
-			updatedBranch = branchDAO.save(branch);
-			branchDAO.flush();
-		} catch (Exception e) {
-			throw e;
-		}
 		
-		return updatedBranch;
-
+		return  branchDAO.save(branch);
 	}
 
 }
